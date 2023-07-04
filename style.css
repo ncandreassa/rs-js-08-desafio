@@ -9,22 +9,42 @@
 }
 
 body {
-    background-color: #FFFFFF;
+    --bg-color: #FFFFFF;
+    --text-color: #323238;
+    --card-color: #E1E1E6;
+    --btn-color: #323238;
+    --btn-active-color: #f32660;
+    --btn-mode-color: #000000;
     font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    background-color: var(--bg-color);
+}
+
+body.dark {
+    --bg-color: #121214;
+    --text-color: #FFFFFF;
+    --card-color: #29292E;
+    --btn-color: #C4C4CC;
+    --btn-active-color: #c21e4c;
+    --btn-mode-color: #FFFFFF;
+}
+
+.modes button svg path {
+    fill: var(--btn-mode-color);
 }
 
 main {
     display: flex;
     align-items: center;
-    height: 100vh;
     justify-content: space-evenly;
+    height: 80%;
 }
 
 #timer {
     display: flex;
     font-size: 12.6rem;
-    color: #323238;
     font-weight: bold;
+    color: var(--text-color);
 }
 
 .first-content,
@@ -44,9 +64,13 @@ main {
     cursor: pointer;
 }
 
+button svg path {
+    fill: var(--btn-color);
+}
+
 .add-time:active svg path,
 .sub-time:active svg path {
-    fill: #f32660;
+    fill: var(--btn-active-color);
 }
 
 .sounds button {
@@ -55,14 +79,62 @@ main {
     height: 15.2rem;
     border-radius: 24px;
     cursor: pointer;
+    background-color: var(--card-color);
 }
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 70%;
+    border-radius: 5px;
+    margin-top: 3.2rem;
+    background: var(--text-color);
+}
+
+/* 
+input[type=range]:focus {
+    outline: none;
+} */
+
+input[type=range]::-webkit-slider-runnable-track {
+    /* width: 100%; */
+    height: 4px;
+    cursor: pointer;
+    animate: 0.2s;
+    /* box-shadow: 0px 0px 0px #000000; */
+    border-radius: 5px;
+    /* border: 0px solid #010101; */
+}
+
+input[type=range]::-webkit-slider-thumb {
+    /* box-shadow: 0px 0px 0px #000031;
+    border: 0px solid #00001E; */
+    height: 16px;
+    width: 16px;
+    border-radius: 15px;
+    background: var(--text-color);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -6px;
+}
+/* 
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #FFFFFF;
+} */
 
 .active svg path {
-    fill: #f32660;
+    fill: var(--btn-active-color);
 }
 
-.selected {
-    background-color: #f32660;
+button.selected {
+    background-color: var(--btn-active-color);
+}
+
+button.selected input[type=range] {
+    background: #FFFFFF;
+}
+
+button.selected input[type=range]::-webkit-slider-thumb {
+    background: #FFFFFF;
 }
 
 .selected svg path {
@@ -92,4 +164,20 @@ main {
 
 .fireplace {
     grid-area: D;
+}
+
+.hide {
+    display: none;
+}
+
+.modes button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.modes {
+    text-align: end;
+    padding-top: 6.0rem;
+    margin-right: 6.0rem;
 }
